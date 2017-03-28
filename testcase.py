@@ -39,10 +39,10 @@ class testing_first_code(unittest.TestCase):
         logger.info("starting first test--> opening url")
         login = Login_page(self.driver).open()
         self.driver.maximize_window()
-        login.enter_login_data()
+        """login.enter_login_data()
         login.press_login_button()
         login.search_mail()
-        logger.info("Finishing test")
+        logger.info("Finishing test")"""
         
 if __name__ == "__main__":
     unittest.main()

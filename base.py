@@ -23,7 +23,7 @@ file_handler = logging.FileHandler('Selenium.log')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
-page_url = "https://webmail.intel.com/"
+page_url = "https://www.gmail.com"
 
 
 """This part reads the configuration file and sets this values into the corresponding dictionary. Range and indexes are depended 
@@ -78,7 +78,7 @@ class Login_page(page):
     def open(self):
         self.driver.get(page_url)
         logger.info("opening page " + str(page_url))
-        if self.wait_for_element (locators['password']):
+        if self.wait_for_element (locators['login_email']):
             return self
         else :
             logger.exception ("test failed")
