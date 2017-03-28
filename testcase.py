@@ -37,8 +37,8 @@ class testing_first_code(unittest.TestCase):
     #Test case for logging in and sending mail    
     def test_enter_login_cred(self):
         logger.info("starting first test--> opening url")
-        login = Login_page(self.driver).open()
-        self.driver.maximize_window()
+        gmail = Login_page(self.driver).open()
+        gmail.login()
         """login.enter_login_data()
         login.press_login_button()
         login.search_mail()

@@ -47,13 +47,7 @@ logger.info("created all dictionaries for locators, credentials and emails")
 #For the time being all execution are put inside search mail. This will be modified in later commits
 class Login_page(page):
     
-    def enter_login_data(self):
-        self.enter_text(locators['username'],Credentials['login'])
-        self.enter_text(locators['password'],Credentials['password'])
-        logger.info("login done")
-        
-    def press_login_button(self):
-        self.click_button(locators['login'])
+
         
     def search_mail(self):
         self.Get_Search_Input = Find_Time()
@@ -78,12 +72,22 @@ class Login_page(page):
     def open(self):
         self.driver.get(page_url)
         logger.info("opening page " + str(page_url))
+        self.driver.maximize_window()
         if self.wait_for_element (locators['login_email']):
             return self
         else :
             logger.exception ("test failed")
             exit
     
+    def login(self):
+        self.enter_text(locators['login_email'],Credentials['login'])
+        self.click_button(locators['email_next'])
+        self.wait_for_element(locators['login_password'])
+        self.enter_text(locators['login_password'],Credentials['password'])
+        self.click_button(locators['sign_in'])
+        logger.info("Logged into gmail")
+        time.sleep(20)
+        
    
             
             
