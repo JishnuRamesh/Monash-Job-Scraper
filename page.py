@@ -12,7 +12,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 """""
 #setting up logger
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 file_handler = logging.FileHandler('Selenium.log')
 file_handler.setFormatter(formatter)
@@ -45,6 +45,7 @@ class page (object):
     #wait for element waits until the element is present on the screen or till time out is reached    
     def wait_for_element(self,locator):
         for i in range (self.timeout_seconds):
+            logger.info("inside the for loo[ for wait method in page module")
             if self.driver.is_element_present(locator):
                 break
             time.sleep(.5)

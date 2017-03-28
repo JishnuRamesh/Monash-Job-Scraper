@@ -17,7 +17,7 @@ import Readconfig_file
 
 #setting up logger
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 file_handler = logging.FileHandler('Selenium.log')
 file_handler.setFormatter(formatter)
@@ -85,6 +85,9 @@ class Login_page(page):
         self.wait_for_element(locators['login_password'])
         self.enter_text(locators['login_password'],Credentials['password'])
         self.click_button(locators['sign_in'])
+        logger.info("need to search for " + locators['compose'])
+        self.wait_for_element(locators['compose'])
+        self.click_button(locators['compose'])
         logger.info("Logged into gmail")
         time.sleep(20)
         

@@ -16,7 +16,7 @@ import logging
 
 #setting up logger
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
 file_handler = logging.FileHandler('Selenium.log')
 file_handler.setFormatter(formatter)
@@ -31,6 +31,7 @@ class Webdriver (WebDriver):
     
     def find_element_by_locator(self,locator):
         locator_type,locator_value = locator.split('=',1)
+        logger.info("inside locator method in driver")
         if locator_type == 'class':
 
             return WebElement(self.find_element_by_class_name(locator_value))
@@ -43,6 +44,7 @@ class Webdriver (WebDriver):
         if locator_type == 'plink':
             return WebElement(self.find_element_by_partial_link_text(locator_type))
         if locator_type == 'xpath':
+            logger.info("xpath finding " + str(locator_value))
             return WebElement(self.find_element_by_xpath(locator_value))
         if locator_type == 'name':
             return WebElement(self.find_element_by_name(locator_value))
@@ -80,7 +82,7 @@ class Webdriver (WebDriver):
     
     def is_element_present(self,locator):
         try :
-            logger.info("checking whether element " + str(locator) + " is avialble on screen")
+            logger.info("checking whether element " + str(locator) + " is available on screen")
             self.find_element_by_locator(locator)
         except NoSuchElementException:
             logger.warning("No element is present in the screen with the locator " + str(locator))
