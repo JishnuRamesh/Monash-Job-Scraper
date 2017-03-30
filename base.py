@@ -65,7 +65,7 @@ class Login_page(page):
         self.enter_text(locators['receiver'],Emails['to_email'])
         self.click_button(locators['send'])
         self.confirm_mail_sent()
-        logger.debug("mail is sent")
+        logger.debug("mail is sent") 
         
     
             
@@ -94,12 +94,11 @@ class Login_page(page):
         self.click_button(locators['compose'])
         self.enter_text(locators['to'],Email_data['to_mail'])
         self.enter_text(locators['subject'],Email_data['subject'])
-        #self.click_button(locators['body'])
-        #self.enter_text(locators['body'],Email_data['body'])
-        element = self.find_element_by_locator(locators['body'])
-        self.driver.execute_script("arguments[0].innerHTML = arguments[1];", element, "testing");
+        body_element = self.find_element_by_locator(locators['body'])
+        #using execute script as Send_Keys method cannot send values to the gmail body
+        self.driver.execute_script("arguments[0].innerHTML = arguments[1];", body_element, Email_data['body']);
         self.click_button(locators['send'])
-        logger.info("send mail")
+        logger.info("mail have been sent")
         
    
             
