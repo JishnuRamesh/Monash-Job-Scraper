@@ -39,7 +39,8 @@ class testing_first_code(unittest.TestCase):
         logger.info("starting first test--> opening url")
         gmail = Login_page(self.driver).open()
         gmail.login()
-        """login.enter_login_data()
+        gmail.send_mail()
+        """
         login.press_login_button()
         login.search_mail()
         logger.info("Finishing test")"""

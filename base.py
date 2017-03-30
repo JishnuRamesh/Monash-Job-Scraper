@@ -87,9 +87,13 @@ class Login_page(page):
         self.click_button(locators['sign_in'])
         logger.info("need to search for " + locators['compose'])
         self.wait_for_element(locators['compose'])
-        self.click_button(locators['compose'])
         logger.info("Logged into gmail")
-        time.sleep(20)
+        
+        
+    def send_mail(self):
+        self.click_button(locators['compose'])
+        self.wait_for_element(locators['to'])
+        logger.info("found to")
         
    
             
