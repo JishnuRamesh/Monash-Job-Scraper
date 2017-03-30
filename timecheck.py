@@ -17,6 +17,7 @@ file_handler = logging.FileHandler('Selenium.log')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
+#not used in the current example. Used to get out the specific time for filtering emails. 
 class Find_Time():
     def Get_Search_Days(self):
         Current_Day = time.strftime("%B %d")

@@ -40,10 +40,7 @@ class testing_first_code(unittest.TestCase):
         gmail = Login_page(self.driver).open()
         gmail.login()
         gmail.send_mail()
-        """
-        login.press_login_button()
-        login.search_mail()
-        logger.info("Finishing test")"""
+        
         
 if __name__ == "__main__":
     unittest.main()

@@ -46,29 +46,7 @@ logger.info("created all dictionaries for locators, credentials and emails")
 #base page on which testing is done
 #For the time being all execution are put inside search mail. This will be modified in later commits
 class Login_page(page):
-    
-
-        
-    def search_mail(self):
-        self.Get_Search_Input = Find_Time()
-        input_text = self.Get_Search_Input.Get_Search_Days()
-        self.enter_text(locators['search'],input_text)
-        self.click_button(locators['advanced_search'])
-        self.wait_for_element(locators['from_text_box'])
-        self.enter_text(locators['from_text_box'],Emails['from_email'])
-        self.click_button(locators['search_icon'])
-        self.wait_for_element(locators['forward']) # new code instead of sleep (15) 
-        self.wait_for_mail(locators['forward'])
-        self.click_button(locators['forward'])
-        self.switch_to_desired_window()
-        self.Accept_alert()
-        self.enter_text(locators['receiver'],Emails['to_email'])
-        self.click_button(locators['send'])
-        self.confirm_mail_sent()
-        logger.debug("mail is sent") 
-        
-    
-            
+                
     def open(self):
         self.driver.get(page_url)
         logger.info("opening page " + str(page_url))

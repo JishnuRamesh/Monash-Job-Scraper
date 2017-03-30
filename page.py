@@ -103,7 +103,7 @@ class page (object):
         logger.exception("no alert observed , returing")
         return True
     
-    #used to navigate from the current window to newly created window. 
+    #used to navigate from the current window to newly created window.Not used in this example
     def switch_to_desired_window(self):
         window_handle_names = self.driver.window_handles
         if len(window_handle_names) == 1 :
@@ -113,7 +113,7 @@ class page (object):
             self.driver.current_window_handle
             return
         
-    #Once mail is sent the new pop up window closes, this part confirms the closure of the window    
+    #Once mail is sent the new pop up window closes, this part confirms the closure of the window.Not used in this example
     def confirm_mail_sent(self):
         window_handles_names = []
         for i in range(self.timeout_seconds):
@@ -128,9 +128,5 @@ class page (object):
                 time.sleep(.5)
             
     
-    def print_the_current_window_handle(self):
-        logger.debug(self.driver.current_window_handle)
-        return 
-            
             
                 
