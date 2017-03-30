@@ -31,14 +31,14 @@ on the number of sections that are to be imported """
 
 locators = {}
 Credentials = {}
-Emails = {}
+Email_data = {}
 dic = [ {} for _ in range(3)]
 
 for i in range(3):
     dic[i] = Readconfig_file.get_values_from_configfile(i)
 locators = dic[0]
 Credentials = dic[1]
-Emails = dic[2]
+Email_data = dic[2]
 logger.info("created all dictionaries for locators, credentials and emails")
 
     
@@ -92,8 +92,14 @@ class Login_page(page):
         
     def send_mail(self):
         self.click_button(locators['compose'])
-        self.wait_for_element(locators['to'])
-        logger.info("found to")
+        self.enter_text(locators['to'],Email_data['to_mail'])
+        self.enter_text(locators['subject'],Email_data['subject'])
+        #self.click_button(locators['body'])
+        #self.enter_text(locators['body'],Email_data['body'])
+        element = self.find_element_by_locator(locators['body'])
+        self.driver.execute_script("arguments[0].innerHTML = arguments[1];", element, "testing");
+        self.click_button(locators['send'])
+        logger.info("send mail")
         
    
             

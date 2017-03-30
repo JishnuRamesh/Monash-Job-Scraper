@@ -44,7 +44,6 @@ class Webdriver (WebDriver):
         if locator_type == 'plink':
             return WebElement(self.find_element_by_partial_link_text(locator_type))
         if locator_type == 'xpath':
-            logger.info("xpath finding " + str(locator_value))
             return WebElement(self.find_element_by_xpath(locator_value))
         if locator_type == 'name':
             return WebElement(self.find_element_by_name(locator_value))
