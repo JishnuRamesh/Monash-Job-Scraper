@@ -3,7 +3,6 @@ from page import page
 from timecheck import Find_Time
 import timecheck,logging
 import time
-#from ConfigParser import ConfigParser
 import Readconfig_file
 
 
