@@ -4,7 +4,6 @@ from Exceptions import NoElementAvailableException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from webelement import WebElement
-import logging
 from baselogging import *
 
 """
@@ -13,16 +12,7 @@ from baselogging import *
  page objects , instead uses find_element_by_locator() method
 ==============================================================================================================================
 
-
-
-#setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-"""""
+"""
 
 
 class Webdriver (WebDriver):

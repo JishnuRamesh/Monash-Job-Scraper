@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 from page import page
 from timecheck import Find_Time
-import timecheck,logging
+import timecheck
 import time
 import Readconfig_file
 from baselogging import *
@@ -13,15 +13,6 @@ from baselogging import *
  methods common for all modules
 ==============================================================================================================================
 
-
-
-#setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 """
 page_url = "https://www.gmail.com"
 

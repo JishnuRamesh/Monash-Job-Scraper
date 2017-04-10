@@ -1,5 +1,4 @@
 from backports import configparser
-import logging
 from baselogging import *
 
 """
@@ -7,15 +6,6 @@ from baselogging import *
  This file reads the concerned config file and inputs it into a dictionary which is then returned to base page
 ==============================================================================================================================
 
-
-
-#setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 """"" 
 
 def get_values_from_configfile(index):

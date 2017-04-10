@@ -1,4 +1,4 @@
-import time,logging
+import time
 from selenium.common.exceptions import NoAlertPresentException 
 from Exceptions import NoElementAvailableException
 from selenium.webdriver.common.keys import Keys
@@ -9,15 +9,6 @@ from baselogging import *
 ==============================================================================================================================
  This is the basic page which contains common modules for all pages. base page inherets from this page
 ==============================================================================================================================
-
-
-#setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 
 """""
 

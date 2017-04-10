@@ -1,5 +1,5 @@
 from driver import Webdriver
-import unittest,time,logging
+import unittest,time
 from base import Login_page
 from baselogging import *
 
@@ -8,15 +8,6 @@ from baselogging import *
  This is the main test case script. All test cases are added as test cases in unittest and executed accordingly 
 ==============================================================================================================================
 
-
-
-#Setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 """""
 desired_capabilities = { 'browserName' : 'chrome' }
 command_executor = "http://127.0.0.1:4444/wd/hub"

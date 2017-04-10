@@ -1,21 +1,10 @@
 from selenium.webdriver.remote.webelement import WebElement as SeleniumWebElement
 from selenium.common.exceptions import NoSuchElementException
-import logging
 from baselogging import *
 """
 ==============================================================================================================================
  Subclassing Webelement for the better implementation
 ==============================================================================================================================
-
-
-
-#setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 """""
 
 class WebElement(SeleniumWebElement):
