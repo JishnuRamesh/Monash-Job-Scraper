@@ -1,6 +1,6 @@
 import logging,inspect
 
-class BaseLogging ():
+class BaseLogging():
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
@@ -39,8 +39,11 @@ class BaseLogging ():
         d = { 'mod_name' : mod_name }
         self.logger.exception(msg, extra = d) 
         
-class Log_Object():
-    log = BaseLogging()
+
+log = BaseLogging()
+    
+if __name__  == "__main__":
+    main()
     
         
         
