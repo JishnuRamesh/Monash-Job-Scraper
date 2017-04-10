@@ -76,6 +76,7 @@ class Login_page(page):
         body_element = self.find_element_by_locator(locators['body'])
         #using execute script as Send_Keys method cannot send values to the gmail body
         self.driver.execute_script("arguments[0].innerHTML = arguments[1];", body_element, Email_data['body']);
+        self.wait_for_element(locators['send'])
         self.click_button(locators['send'])
         log.info("mail have been sent")
         
