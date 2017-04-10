@@ -70,6 +70,7 @@ class Login_page(page):
         
     def send_mail(self):
         self.click_button(locators['compose'])
+        self.wait_for_element(locators['to'])
         self.enter_text(locators['to'],Email_data['to_mail'])
         self.enter_text(locators['subject'],Email_data['subject'])
         body_element = self.find_element_by_locator(locators['body'])
