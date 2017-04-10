@@ -1,11 +1,11 @@
 import logging,inspect
 
-class BaseLogging ():
+class BaseLogging():
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
         self.formatter = logging.Formatter('%(asctime)s:%(mod_name)s,%(levelname)s:%(message)s')
-        self.file_handler = logging.FileHandler('Selenium1.log') 
+        self.file_handler = logging.FileHandler('Selenium.log') 
         self.file_handler.setFormatter(self.formatter)
         self.logger.addHandler(self.file_handler)
         
@@ -39,8 +39,11 @@ class BaseLogging ():
         d = { 'mod_name' : mod_name }
         self.logger.exception(msg, extra = d) 
         
-class Log_Object():
-    log = BaseLogging()
+
+log = BaseLogging()
+    
+if __name__  == "__main__":
+    main()
     
         
         

@@ -1,21 +1,11 @@
 from selenium.webdriver.remote.webelement import WebElement as SeleniumWebElement
 from selenium.common.exceptions import NoSuchElementException
-import logging
-
+from baselogging import *
 """
 ==============================================================================================================================
  Subclassing Webelement for the better implementation
 ==============================================================================================================================
-
 """""
-
-#setting up logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
-file_handler = logging.FileHandler('Selenium.log')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
 
 class WebElement(SeleniumWebElement):
 	def __init__(self,element):
@@ -42,7 +32,7 @@ class WebElement(SeleniumWebElement):
 			return WebElement(self.find_element_by_name(locator_value))
 		else:
 			raise NoSuchElementException ("Invalid Selector")
-			logger.exception("wrong locator :" +str(locator_value) + " given and an element couldn't be found with this locator")
+			log.exception("wrong locator :" +str(locator_value) + " given and an element couldn't be found with this locator")
 
 
 	def find_elements_by_locator(self,locator):
@@ -66,7 +56,7 @@ class WebElement(SeleniumWebElement):
 			element = self.find_elements_by_id(locator_value)
 		else:
 			raise Exception ("Invalid Selector")
-			logger.exception("wrong locator:  " + str(locator_value) + " given and an element couldn't be found with this locator")
+			log.exception("wrong locator:  " + str(locator_value) + " given and an element couldn't be found with this locator")
 		
 		return [Webelement(e) for e in element]
 	
