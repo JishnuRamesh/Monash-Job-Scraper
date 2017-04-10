@@ -5,7 +5,7 @@ class BaseLogging():
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
         self.formatter = logging.Formatter('%(asctime)s:%(mod_name)s,%(levelname)s:%(message)s')
-        self.file_handler = logging.FileHandler('Selenium1.log') 
+        self.file_handler = logging.FileHandler('Selenium.log') 
         self.file_handler.setFormatter(self.formatter)
         self.logger.addHandler(self.file_handler)
         
