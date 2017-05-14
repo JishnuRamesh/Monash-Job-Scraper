@@ -1,6 +1,7 @@
 # SeleniumFramework
 This is a loose example of a python-selenium script under POM model that is perfectly scalable . 
-The current implementation is for google driver with remote webdriver
+The current implementation is for chrome and firefox driver with remote webdriver using chromeriver and geckodriver respectively
+The user have to specify the framework in which the test has to be done (eg chrome / firefox) on testcase.py page and based on this respective drivers for the browsers will start running
 Script will login to gmail and send a mail to the specified email address. To use the script populate the remaning fields in the config file.
 
 
