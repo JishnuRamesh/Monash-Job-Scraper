@@ -1,23 +1,21 @@
 from driver import Webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import unittest,time
 from base import Login_page
 from baselogging import *
+from selenium.webdriver.common import desired_capabilities
 
 """
 ==============================================================================================================================
  This is the main test case script. All test cases are added as test cases in unittest and executed accordingly 
 ==============================================================================================================================
-
-"""""
-desired_capabilities = { 'browserName' : 'chrome' }
-command_executor = "http://127.0.0.1:4444/wd/hub"
-
-
+"""
 
 #Unittest code 
 class testing_first_code(unittest.TestCase):
     def setUp (self):
-        self.driver = Webdriver(desired_capabilities=desired_capabilities, command_executor=command_executor)
+        #enter the name of the browser that you need to test here supported chrome/firefox
+        self.driver = Webdriver(browser = '')
         log.info("setup done" )
         #self.current_setUp_name =  setUp.__name__
 

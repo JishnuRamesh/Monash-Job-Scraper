@@ -5,6 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from webelement import WebElement
 from baselogging import *
+from selenium.webdriver.common import desired_capabilities
 
 """
 ==============================================================================================================================
@@ -16,9 +17,18 @@ from baselogging import *
 
 
 class Webdriver (WebDriver):
-    def __init__(self,**kwargs):
+    def __init__(self,browser):
+        if browser == 'chrome':
+            log.info("Setting capabilities for chrome")
+            desired_capabilities = {'browserName' : 'chrome'}
+        
+        if browser == 'firefox':
+            log.info("Setting capabilities for chrome")
+            desired_capabilities = {'browserName' : 'firefox' , 'marionette' : True , 'binary' : 'C:/Program Files (x86)/Mozilla Firefox/firefox.exe' , 'profile' : 'C:/Users/Jishnu/AppData/Local/Mozilla/Firefox/Profiles/oio7zluy.Automation'}
+            
+        command_executor = "http://127.0.0.1:4444/wd/hub"    
         log.info("webdriver is getting executed")
-        super(Webdriver,self).__init__(**kwargs)
+        super(Webdriver,self).__init__(command_executor,desired_capabilities )
     
     def find_element_by_locator(self,locator):
         locator_type,locator_value = locator.split('=',1)
