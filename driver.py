@@ -9,8 +9,9 @@ from selenium.webdriver.common import desired_capabilities
 
 """
 ==============================================================================================================================
- Subclassing Webdriver for better implementation. We don't use the the driver methods to find elements directly in any of the 
- page objects , instead uses find_element_by_locator() method
+ Subclassing Webdriver for better implementation. 
+ Once the desired capabilities are set for the corresponding browser all values are passed to the super init to initialize 
+ selenium webdriver remote connection
 ==============================================================================================================================
 
 """
@@ -23,12 +24,18 @@ class Webdriver (WebDriver):
             desired_capabilities = {'browserName' : 'chrome'}
         
         if browser == 'firefox':
-            log.info("Setting capabilities for chrome")
+            log.info("Setting capabilities for firefox")
             desired_capabilities = {'browserName' : 'firefox' , 'marionette' : True , 'binary' : 'C:/Program Files (x86)/Mozilla Firefox/firefox.exe' , 'profile' : 'C:/Users/Jishnu/AppData/Local/Mozilla/Firefox/Profiles/oio7zluy.Automation'}
             
         command_executor = "http://127.0.0.1:4444/wd/hub"    
         log.info("webdriver is getting executed")
         super(Webdriver,self).__init__(command_executor,desired_capabilities )
+        
+#
+#=====================================================================================================================
+#Implemented finding elements by a new method which internally will call the methods of webdriver.
+#=====================================================================================================================
+#"""
     
     def find_element_by_locator(self,locator):
         locator_type,locator_value = locator.split('=',1)
@@ -79,6 +86,7 @@ class Webdriver (WebDriver):
         
         return [ WebElement(e) for e in elements ]
     
+    #Checking if the element is present on the screen
     def is_element_present(self,locator):
         try :
             log.info("checking whether element " + str(locator) + " is available on screen")
@@ -87,17 +95,19 @@ class Webdriver (WebDriver):
             log.warning("No element is present in the screen with the locator " + str(locator))
             return False
         return True
+    
+    #Checking of element is visible on the screen
     def is_element_visible(self,locator):
         if self.find_element_by_locator(locator).is_displayed():
             return True
         else:
             return False
         
+    #Makes use of is_element_present and is_element_available to identify whether any actions can be performed
     def is_element_available (self,locator):
         if self.is_element_present(locator):
             if self.is_element_visible(locator):
                 return True
-            
         else:
             return False
         

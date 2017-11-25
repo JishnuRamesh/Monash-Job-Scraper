@@ -25,3 +25,4 @@ def get_values_from_configfile(index):
         dic[key] = value
     log.info ("returning the created dictionary of config file values to base file")
     return dic
+

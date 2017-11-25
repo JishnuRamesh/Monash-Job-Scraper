@@ -15,7 +15,7 @@ from selenium.webdriver.common import desired_capabilities
 class testing_first_code(unittest.TestCase):
     def setUp (self):
         #enter the name of the browser that you need to test here supported chrome/firefox
-        self.driver = Webdriver(browser = '')
+        self.driver = Webdriver(browser = 'chrome')
         log.info("setup done" )
         #self.current_setUp_name =  setUp.__name__
 
