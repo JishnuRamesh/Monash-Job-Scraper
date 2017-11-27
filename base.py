@@ -23,8 +23,10 @@ on the number of sections that are to be imported """
 locators = {}
 Credentials = {}
 Email_data = {}
+# creates a dictionary of dictionary
 dic = [ {} for _ in range(3)]
 
+#Populates the dictionary using the read values from config file
 for i in range(3):
     dic[i] = Readconfig_file.get_values_from_configfile(i)
 locators = dic[0]
