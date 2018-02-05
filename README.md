@@ -1,15 +1,35 @@
-# SeleniumFramework
-This is a loose example of a python-selenium script under POM model that is perfectly scalable . 
-The current implementation is for chrome and firefox driver with remote webdriver using chromeriver and geckodriver respectively
-The user have to specify the framework in which the test has to be done (eg chrome / firefox) on testcase.py page and based on this respective drivers for the browsers will start running
-Script will login to gmail and send a mail to the specified email address. To use the script populate the remaning fields in the config file.
+#Monash Job Scraper
+This script runs through the Monash career gateway website and scrapes the job information. These data are then saved into a sqlite3 database. When a new job listing is encountered an email is send out to the concerened user.
 
+How to run the script
 
+#STEP 1
 
-The framework expects to tackle two major issue with selenium automation: 
-1. Scalability 
-    Any selenium script could be easily broken when the developers deicdes on one design change . The problem in using the in built selenium methods like find_elements_by_xpath() directly in scripts is that we would need to go and edit each and every find element in the script. Instead this example makes use of a custom made method which will auto detect which locator (say xpath, id , name ) you are  using and find the element for you. This makes sure that you dont need to re edit the script, instead just edit the configuration file that holds the locator for each element that had changed. This helps you to preserve the same script and use it again 
-    
-2. Wait for element
-  Another problem with selenium automation is the need to wait for element. We could use a time.sleep() but that is not a perfect idea as the script sleep for the given time even if element appeared before the specified time. This framework removes this problem by inherently  stopping the script until the specific element is found and resumes automatically. This makes sure our script is dynamic and is as fast as possible . Refer wait_for_element() method to find out how to use this
+Download following dependencies and softwares
+Selenium Standalone Server 3.4.0
+Python 3.6
+Python-Selenium 3.4
+Beautiful Soup 4
+lxml
+backports
+Configparser
 
+#STEP 2
+
+Update the location of the downloaded selenium standalone server 3.4.0 in the script ServerManager.py on line 12
+
+#STEP 3
+
+Update the location of the downloaded script in the DabatbaseInteraction.py on line 10
+
+#STEP 4
+
+Run DatabaseSetup.py first. This sets up the database for the script
+
+#STEP 5
+
+Update the from and to email address in the script EmailSender.py from lines 10 to 12
+
+#STEP 6
+
+Run testcase,py to run the script to scrape for new jobs.
