@@ -5,6 +5,12 @@ import timecheck
 import time
 import Readconfig_file
 from baselogging import *
+from selenium.webdriver.remote.webelement import WebElement
+from symbol import argument
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from Parser import parser
 
 
 """
@@ -14,7 +20,7 @@ from baselogging import *
 ==============================================================================================================================
 
 """
-page_url = "https://www.gmail.com"
+page_url = "https://careergateway.monash.edu.au/students/login?ReturnUrl=%2f"
 
 
 """This part reads the configuration file and sets this values into the corresponding dictionary. Range and indexes are depended 
@@ -43,35 +49,76 @@ class Login_page(page):
     def open(self):
         self.driver.get(page_url)
         log.info("opening page " + str(page_url))
-        self.driver.maximize_window()
-        if self.wait_for_element (locators['login_email']):
+        if self.wait_for_element (locators['current_student']):
             return self
         else :
             log.exception ("test failed")
-            exit
     
     def login(self):
+        self.click_button(locators['current_student'])
         self.enter_text(locators['login_email'],Credentials['login'])
-        self.click_button(locators['email_next'])
-        self.wait_for_element(locators['login_password'])
         self.enter_text(locators['login_password'],Credentials['password'])
-        self.click_button(locators['sign_in'])
-        log.info("need to search for " + locators['compose'])
-        self.wait_for_element(locators['compose'])
-        log.info("Logged into gmail")
+        self.driver.find_element_by_locator(locators['sign_in']).submit()
+        self.wait_for_element(locators['image'])
+        log.info("login completed")
         
         
-    def send_mail(self):
-        self.click_button(locators['compose'])
-        self.wait_for_element(locators['to'])
-        self.enter_text(locators['to'],Email_data['to_mail'])
-        self.enter_text(locators['subject'],Email_data['subject'])
-        body_element = self.find_element_by_locator(locators['body'])
-        #using execute script as Send_Keys method cannot send values to the gmail body
-        self.driver.execute_script("arguments[0].innerHTML = arguments[1];", body_element, Email_data['body']);
-        self.wait_for_element(locators['send'])
-        self.click_button(locators['send'])
-        log.info("mail have been sent")
+    def get_vacation_programme(self):
+        self.wait_for_element(locators['job_option'])
+        select = Select(self.find_element_by_locator(locators['job_option']))
+        select.select_by_visible_text("Vacation Employment Programme")
+        self.find_element_by_locator(locators['image']).send_keys(Keys.ENTER)
+        self.wait_for_element(locators['caret'])
+        time.sleep(10)
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        self.click_button(locators['caret'])
+        self.wait_for_element(locators['list_all'])
+        self.click_button(locators['list_all'])
+        log.info("listed the vacation programme")
+        
+    def get_jobs(self,job_type):
+        for item in job_type:
+            self.scroll_to_top()
+            self.wait_for_element(locators['job_option'])
+            select = Select(self.find_element_by_locator(locators['job_option']))
+            select.select_by_visible_text(item)
+            try:
+                self.find_element_by_locator(locators['image']).send_keys(Keys.ENTER)
+            except:
+                self.find_element_by_locator(locators['image1']).send_keys(Keys.ENTER)
+            try:
+                self.wait_for_element(locators['caret'])
+                self.scroll_to_bottom()
+                self.click_button(locators['caret'])
+            #self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            
+            # Used a loop to list all items of the job listing
+                for i in range(1,1000):
+                    try:
+                        self.wait_for_element("xpath=//*[@id=\"ng-app\"]/div[2]/div/div[3]/div[1]/div[2]/div/div/ul/li["+str(i)+"]/a")
+                    except:
+                        i=i-1
+                        log.info("Not Found_element_SHOW_ALL"+ str(i))
+                        self.scroll_to_bottom()
+                        self.click_button("xpath=//*[@id=\"ng-app\"]/div[2]/div/div[3]/div[1]/div[2]/div/div/ul/li["+(str(i))+"]/a")
+                        break
+            except:
+                log.info("no caret element for " + str(job_type))
+            #self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            self.scroll_to_bottom()
+            self.wait_for_element(locators['job_option'])
+            html = self.driver.page_source.encode("utf-8")
+            page_parser = parser(html)
+            page_parser.scrape_jobs(item)
+        
+    
+     
+        
+  
+        
+            
+                                                       
+        
         
    
             

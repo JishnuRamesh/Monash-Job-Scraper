@@ -4,6 +4,7 @@ from Exceptions import NoElementAvailableException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from baselogging import *
+from time import sleep
 
 """
 ==============================================================================================================================
@@ -30,7 +31,8 @@ class page (object):
         element.send_keys(text)
         
     def click_button(self,locator):
-        self.find_element_by_locator(locator).click()
+        if self.wait_for_element(locator):
+            self.find_element_by_locator(locator).click()
         
     def Send_Enter(self,locator):
         self.find_element_by_locator(locator).send_keys(Keys.ENTER)
@@ -119,7 +121,36 @@ class page (object):
             else:
                 log.info("waiting for mail to be sent")
                 time.sleep(.5)
+                
+    def maximize_browser_window(self):
+        self.driver.maximize_window()
+        
+    def click_subelement(self,locator_value_0,locator_value_1):
+        element_to_find_0 = self.find_element_by_locator(locator_value_0)
+        element_to_find_1 = self.find_element_by_locator(locator_value_1)
+        if self.driver.is_element_available(locator_value_1):
+            ActionChains(self.driver).move_by_offset(958, 317).click_and_hold(element_to_find_1).perform()
+            sleep(1)
+            ActionChains(self.driver).release(element_to_find_1)
+        #ActionChains(self.driver).move_to_element(element_to_find_0).move_to_element(element_to_find_1).click(element_to_find_1).perform()
+            ActionChains(self.driver).move_to_element(element_to_find_1).send_keys(Keys.SPACE)
+        else:
+            print('issue found')
             
-    
+            
+    def select_list_element(self,list_header,list_selection):
+        list_header_element = self.driver.find_element_by_locator(list_header)
+        ActionChains(self.driver).move_to_element(list_header_element)
+        list_selection_elements = list_header_element.find_elements_by_tag_name("li")    
+        for items in list_selection_elements:
+            print(str(items))
+            
+    def scroll_to_bottom(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        log.info("scrolled page to bottom")
+        
+    def scroll_to_top(self):
+        self.driver.execute_script("window.scrollTo(0, 0);")
+        log.info("scrolled to the top page")
             
                 

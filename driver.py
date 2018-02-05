@@ -21,12 +21,17 @@ class Webdriver (WebDriver):
     def __init__(self,browser):
         if browser == 'chrome':
             log.info("Setting capabilities for chrome")
-            desired_capabilities = {'browserName' : 'chrome'}
+            desired_capabilities = {'browserName' : 'chrome',
+                                    'chromeOptions': {'args': ['start-maximized']}}
         
-        if browser == 'firefox':
+        elif browser == 'firefox':
             log.info("Setting capabilities for firefox")
             desired_capabilities = {'browserName' : 'firefox' , 'marionette' : True , 'binary' : 'C:/Program Files (x86)/Mozilla Firefox/firefox.exe' , 'profile' : 'C:/Users/Jishnu/AppData/Local/Mozilla/Firefox/Profiles/oio7zluy.Automation'}
-            
+        
+        elif browser == 'phantomjs':
+            log.info("Setting capabilities for phantom")
+            desired_capabilities = {'browserNamme' : 'phantomjs'} 
+              
         command_executor = "http://127.0.0.1:4444/wd/hub"    
         log.info("webdriver is getting executed")
         super(Webdriver,self).__init__(command_executor,desired_capabilities )

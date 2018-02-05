@@ -1,3 +1,5 @@
 /src/New Folder/*
 *.log
 *.pyc
+*.html
+*.db
