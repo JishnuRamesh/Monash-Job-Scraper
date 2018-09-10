@@ -1,6 +1,10 @@
 
 # DEPRECATED
 
+Since Monash moved into OKTA login provider this service no longer works. Hence been deprecated
+
+
+
 
 
 # Monash Job Scraper
