@@ -1,3 +1,8 @@
+
+# DEPRECATED
+
+
+
 # Monash Job Scraper
 This script runs through the Monash career gateway website and scrapes the job information. These data are then saved into a sqlite3 database. When a new job listing is encountered an email is send out to the concerened user.
 
